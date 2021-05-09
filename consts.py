@@ -17,7 +17,7 @@ RECT_LINES = np.array([(507, 466), (680, 466), (1150, 717), (142, 717)], dtype="
 HIST_WINDOW_H = 15
 
 # Dossier des données de calibration
-CALIB_FOLDER = "calib//calib_s7"
+CALIB_FOLDER = "calib/calib_s7"
 CALIB_FILE = "{}_data.json".format(CALIB_FOLDER, CALIB_FOLDER)
 CALIB_FORMAT = (1280, 720) # Doit correspondre au format de la vidéo/photo d'expérimentation ?
 
@@ -33,10 +33,10 @@ OFFSET_LIMIT = 150
 # 0 pour le mode image, 1 pour les vidéos
 VIDEO_MODE = 1
 
-IMAGE_PATH = "sortie_1_red.png"
+IMAGE_PATH = "data/sample/sortie_1_red.png"
 
 # Chemin de la vidéo, mettre 1 pour la webcam
-VIDEO_PATH = "autoroute.avi"
+VIDEO_PATH = "data/sample/autoroute.avi"
 
 # Pour utiliser la pipeline de preprocessing à la place de la pipeline de production
 PIPLELINE_TEST = 0

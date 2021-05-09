@@ -33,28 +33,28 @@ WIP : Fix le crash sur Android
     -> On va aussi passer à WSL 2 pour aller plus vite
 
 TODO:
-x Lancer le main_win.py sur WSL
-x Lancer le main_kivy.py sur Windows Natif (Conda)
-x Adapter le buildozer.spec (Permission, requierements)
-x Opencv:
-    x Installer opencv sous wsl
-    x Compiler l'APK avec opencv
+[x] Lancer le main_win.py sur WSL
+[x] Lancer le main_kivy.py sur Windows Natif (Conda)
+[x] Adapter le buildozer.spec (Permission, requierements)
+[x] Opencv:
+    [x] Installer opencv sous wsl
+    [x] Compiler l'APK avec opencv
 
-- Pouvoir lancer le script de test sur vidéo sur android
-- Intégrer l'usage de la camera
+[ ] Pouvoir lancer le script de test sur vidéo sur android
+[ ] Intégrer l'usage de la camera
     (après permissions)
-    x Avec kivy (pour tester mais inutilisable pour la suite)
-    - Avec cv2.VideoCapture (ou autre chose ?)
-- Pouvoir choisir les points d'ancrage de la birdview sur le tel
-    - Mettre en place un bouton permettant la mise en pause du filtrage cv2
+    [x] Avec kivy (pour tester mais inutilisable pour la suite)
+    [ ] Avec cv2.VideoCapture (ou autre chose ?)
+[ ] Pouvoir choisir les points d'ancrage de la birdview sur le tel
+    [ ] Mettre en place un bouton permettant la mise en pause du filtrage cv2
     (qui laisse donc la video intacte, sans birdview etc.)
-    - Permet avec 4 pressions de définir la zone de birdview et les enregistrer
+    [ ] Permet avec 4 pressions de définir la zone de birdview et les enregistrer
     dans l'internal_storage
-    - Pouvoir selectionner la config de points d'ancrage au début de l'exec ?
-- Optimiser la conversion de frame opencv à Texture Kivy
+    [ ] Pouvoir selectionner la config de points d'ancrage au début de l'exec ?
+[ ] Optimiser la conversion de frame opencv à Texture Kivy
 
-x Changer l'icone de l'appli
-x Changer le splashscreen
+[x] Changer l'icone de l'appli
+[x] Changer le splashscreen
 
 Notes :
 Pour utiliser la caméra, il semble être nécessaire de demander la permission
