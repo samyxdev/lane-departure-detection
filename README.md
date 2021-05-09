@@ -1,13 +1,13 @@
 # Lane Departure Detection
 
 ## Lancement
-* Pour lancer Kivy sur Windows natif : conda run ./main.py
-* Pour lancer Kivy sur WSL : classique
-* Pour générer l'APK : Sur WSL : buildozer android debug deploy run logcat
+* Pour lancer Kivy sur Windows natif : `conda run ./main.py`
+* Pour lancer Kivy sur WSL : après être rentré dans le kivy_env : `python3 main.py`
+* Pour générer l'APK : Sur WSL : `buildozer android debug deploy run logcat`
 
-* Quand aucun adb device n'est reconnu : adb kill-server puis adb start-server
-* Pour clean les précedents builds : buildozer appclean
-* Pour entrer dans le venv : source ~/.storevirtualenvs/kivy_env/bin/activate
+* Quand aucun adb device n'est reconnu : `adb kill-server puis adb start-server`
+* Pour clean les précedents builds : `buildozer appclean`
+* Pour entrer dans le venv : `source ~/.storevirtualenvs/kivy_env/bin/activate`
 
 ## WIP
 Fix le crash sur Android
