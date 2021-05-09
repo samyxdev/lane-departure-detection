@@ -33,10 +33,10 @@ OFFSET_LIMIT = 150
 # 0 pour le mode image, 1 pour les vidéos
 VIDEO_MODE = 1
 
-IMAGE_PATH = "data/sample/sortie_1_red.png"
+IMAGE_PATH = "data/samples/sortie_1_red.png"
 
 # Chemin de la vidéo, mettre 1 pour la webcam
-VIDEO_PATH = "data/sample/autoroute.avi"
+VIDEO_PATH = "data/samples/autoroute.avi"
 
 # Pour utiliser la pipeline de preprocessing à la place de la pipeline de production
 PIPLELINE_TEST = 0
