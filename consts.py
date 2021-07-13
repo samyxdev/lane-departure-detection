@@ -31,13 +31,13 @@ OFFSET_LIMIT = 150
 
 # Pour le script principal
 # 0 pour le mode image, 1 pour les vidéos, 2 pour une cam
-VIDEO_MODE = 1
+VIDEO_MODE = 2
 
 IMAGE_PATH = "sortie_1_red.png"
 
 # Chemin de la vidéo
 VIDEO_PATH = "autoroute.avi"
-WEBCAM_PATH = 1
+WEBCAM_PATH = "http://192.168.0.30:8080/video"
 
 # Pour utiliser la pipeline de preprocessing à la place de la pipeline de production
 PIPLELINE_TEST = 0
