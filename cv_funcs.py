@@ -213,7 +213,7 @@ def pipeline_v2(frame, calib=None, prevCarState=None, onlyBirdview=False):
         return {"original marked": marked_frame, "birdview w/ data": final_birdview}, behavior
     else:
         if not DISABLE_CAR_STATE:
-            return final_birdvfiew, behavior
+            return final_birdview, behavior
 
         else:
             return final_birdview

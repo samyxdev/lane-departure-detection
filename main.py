@@ -1,108 +1,42 @@
-# coding: utf-8
-"""
-Script réservé à l'execution sous kivy -> Android
-
-Contient la mise en page des différentes pages possibles de l'appli
-
-Notes :
-Pour utiliser la caméra, il semble être nécessaire de demander la permission
-à l'éxecution (en plus de le spécifier dans le buildozer.spec) avec:
-from android.permissions import request_permissions, Permission
-request_permissions([Permission.CAMERA])
-"""
-
-import cv2
-import os
-
-#os.environ['KIVY_GL_BACKEND'] = 'glew'
-
-from consts import *
-from cv_funcs import *
-from kivy_funcs import *
-
-import kivy
-
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.clock import Clock
-from kivy.graphics.texture import Texture
-from kivy.uix.image import Image
-from kivy.utils import platform
+from kivy.lang import Builder
 
-# Pour check que c'est la dernière version de kivy malgré les recipes 1.11.1 de buildozer
-REQUIRED_KIVY = "2.0.0"
+kv = """
+#:import XCamera kivy_garden.xcamera
 
-try:
-    kivy.require(REQUIRED_KIVY)
-except:
-    print(f"Unexpected kivy version {kivy.__version__}, expected {REQUIRED_KIVY}")
+FloatLayout:
+    orientation: 'vertical'
 
-isAndroid = platform == "android"
-if isAndroid:
-    from android.permissions import request_permissions, Permission
-    from android.storage import app_storage_path, primary_external_storage_path
+    XCamera:
+        id: xcamera
+        on_picture_taken: app.picture_taken(*args)
 
-class VideoTesting(Image):
-    """Page de test sur vidéos (pas sur caméra)
-    Pour l'instant, les tests seront limités à la birdview
-    """
-    def __init__(self, capture, fps, **kwargs):
-        Image.__init__(self, **kwargs)
-        self.capture = capture
-        Clock.schedule_interval(self.update, 1.0 / fps)
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: 1, None
+        height: sp(50)
 
-    def update(self, dt):
-        ret, frame = self.capture.read()
+        Button:
+            text: 'Set landscape'
+            on_release: xcamera.force_landscape()
 
-        if ret:
-            out_frame = pipeline_v2(frame, onlyBirdview=True)
+        Button:
+            text: 'Restore orientation'
+            on_release: xcamera.restore_orientation()
+"""
 
-            # Pour passer de la frame cv à la texture kivy
-            buf = cv2.flip(out_frame, 0).tostring()
-            image_texture = Texture.create(
-                size=(out_frame.shape[1], out_frame.shape[0]), colorfmt='bgr')
-            image_texture.blit_buffer(buf, colorfmt='bgr', bufferfmt='ubyte')
-            self.texture = image_texture
 
-class MainApp(App):
-    """ Classe d'initialisation de l'application
-    """
+class CameraApp(App):
     def build(self):
-        printd("MainApp build ...")
+        return Builder.load_string(kv)
 
-        if isAndroid:
-            printd("Requesting permissions...")
-            request_permissions([Permission.CAMERA])
+    def picture_taken(self, obj, filename):
+        print('Picture taken and saved to {}'.format(filename))
 
-        int_video_path = os.path.join(app_storage_path(), "app", VIDEO_PATH) if isAndroid else VIDEO_PATH
 
-        if not os.path.exists(int_video_path):
-            printd(f"Path {int_video_path} not found !")
-        else:
-            printd(f"Path {int_video_path} exists !")
+def main():
+    CameraApp().run()
 
-        #availableVideoSources()
-
-        self.capture = cv2.VideoCapture(os.path.realpath(int_video_path))
-        #self.capture = cv2.VideoCapture(VIDEO_PATH)
-        #self.capture = cv2.VideoCapture(0)
-        if self.capture.isOpened():
-            printd("cv2 VideoCapture initialised !")
-        else:
-            printd("cv2 VideoCapture failed to init...")
-            return Label(text="cv2 VideoCapture failed to init...")
-
-        video = VideoTesting(self.capture,
-            self.capture.get(cv2.CAP_PROP_FPS) if not FORCE_FPS else FORCE_FPS)
-
-        printd("Capture set up")
-
-        return video
-
-    def on_stop(self):
-        if VIDEO_MODE:
-            self.capture.release()
 
 if __name__ == '__main__':
-    MainApp().run()
-
+    main()

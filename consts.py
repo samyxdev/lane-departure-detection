@@ -30,13 +30,14 @@ ONLY_FITTED_LINE = False
 OFFSET_LIMIT = 150
 
 # Pour le script principal
-# 0 pour le mode image, 1 pour les vidéos
+# 0 pour le mode image, 1 pour les vidéos, 2 pour une cam
 VIDEO_MODE = 1
 
-IMAGE_PATH = "data/samples/sortie_1_red.png"
+IMAGE_PATH = "sortie_1_red.png"
 
-# Chemin de la vidéo, mettre 1 pour la webcam
-VIDEO_PATH = "data/samples/autoroute.avi"
+# Chemin de la vidéo
+VIDEO_PATH = "autoroute.avi"
+WEBCAM_PATH = 1
 
 # Pour utiliser la pipeline de preprocessing à la place de la pipeline de production
 PIPLELINE_TEST = 0
