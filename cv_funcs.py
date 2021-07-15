@@ -160,10 +160,22 @@ def birdview_transformation(img, rect):
     return warped
 
 """
+Pipeline de debug - Permet de réaliser des tests
+"""
+def pipeline_debug(frame):
+    frame = frame[(frame.shape[0] // 3) * 2:, :]
+
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    (T, f2) = cv2.threshold(gray_frame, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    f3 = cv2.adaptiveThreshold(gray_frame, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 7, 5)
+
+    print(T)
+
+    return f2, f3
+
+"""
 Deuxième version de la pipeline, avec la birdview transform
 """
-
-
 def pipeline_v2(frame, calib=None, prevCarState=None, onlyBirdview=False):
     """ Deuxième version de la pipeline de production, contenant
     la birdview. Retourne une image
@@ -231,6 +243,7 @@ s < 50
 v3 -
 v > 135
 """
+"""
 def custom_threshold(frame):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     H = hsv[:, :, 0]
@@ -241,6 +254,13 @@ def custom_threshold(frame):
     binary[(V > 75) & (S < 50)] = 255
 
     return binary
+"""
+def custom_threshold(frame):
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    (T, otsu_frame) = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+
+    return otsu_frame
 
 """
 Pipeline de test pour le préprocessing de l'image
@@ -248,7 +268,6 @@ Pipeline de test pour le préprocessing de l'image
 def pipeline_preproc(frame):
     thresh = custom_threshold(frame)
 
-    frame = custom_threshold_calibration(frame)
 
     return {"original": frame, "thresh":thresh}
 

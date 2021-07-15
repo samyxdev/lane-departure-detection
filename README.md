@@ -10,6 +10,9 @@
 * Pour entrer dans le venv : `source kivyvenv/bin/activate`
 
 ## WIP
+* Laisser le programme déterminer tout seul le placement des lignes pour déterminer
+    la box de la birdview
+
 * Faire fonctionner l'accélération GL de WSL2 vers Windows
     Mettre à jour WSL2 et installer les drivers spéciaux
 
