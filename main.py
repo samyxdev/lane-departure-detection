@@ -5,24 +5,19 @@ Script réservé à l'execution sans kivy !
 
 import cv2
 import os
+import matplotlib.pyplot as plt
 
 from consts import *
-from cv_funcs import *
+from utils import *
+from imgproc import *
+from lines import *
 
 if not VIDEO_MODE :
-    img_names = ["nuit", "crepuscule", "journee"]
+    img = cv2.imread(IMAGE_PATH)
 
-    imgs = [cv2.imread(f"data/samples/{name}.png") for name in img_names]
+    assert img is not None
 
-    for i, img in enumerate(imgs):
-        print(img_names[i])
-
-        assert img is not None
-
-        frames = pipeline_debug(img)
-
-        cv2.imshow(f"Otsu {img_names[i]}", frames[0])
-        cv2.imshow(f"Adptative {img_names[i]}", frames[1])
+    cv2.imshow(pipeline_v2(img))
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()

@@ -31,7 +31,7 @@ OFFSET_LIMIT = 150
 
 # Pour le script principal
 # 0 pour le mode image, 1 pour les vidéos, 2 pour une cam
-VIDEO_MODE = 0
+VIDEO_MODE = 1
 
 IMAGE_PATH = "data/samples/sortie_1_red.png"
 
