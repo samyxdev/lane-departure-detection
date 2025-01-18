@@ -1,4 +1,13 @@
 # Lane Departure Detection
+Python/Android project enabling the detection of lane departure on a road, using OpenCV and Kivy.
+
+Sample:
+![Sample](sample.png)
+
+Driving Line Assist project, with a debug view containing the original frame and the birdview transformation:
+- Road dots: green are deducted from the histogram processing, red are from a polynomial fitting of green ones
+- Bottom cursors: Car position (purple cursor) from the center of the road (white cursor) and the road lines (yellow cursors)
+- Curvature radius (deducted from polynomial fitting of the lines)
 
 ## Lancement
 * Pour lancer Kivy sur Windows natif : `conda run ./main.py`
